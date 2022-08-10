@@ -142,6 +142,25 @@
 
                 document.querySelector("#result2").value = clone_words.join(", ");
             });
+
+            // rich feature input
+            document.querySelectorAll('input.form-control').forEach(input => {
+                input.addEventListener('focus', (me) => {
+                    me.target.select();
+                });
+
+                input.addEventListener('keyup', (me) => {
+                    let inputNode;
+                    
+                    if(me.key.toLowerCase() == 'backspace'){
+                        inputNode = me.target.parentNode.previousElementSibling?.querySelector('input');
+                    }else{
+                        inputNode = me.target.parentNode.nextElementSibling?.querySelector('input');
+                    }
+                    
+                    inputNode?.focus();
+                });
+            });
         }
     </script>
 </body>
